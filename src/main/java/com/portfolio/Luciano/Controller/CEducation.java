@@ -21,8 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "https://portfolio-fb829.web.app")
 @RequestMapping("/education")
-@CrossOrigin(origins = "https://portfolio-fb829.web.app")
 public class CEducation {
 
     @Autowired
@@ -43,7 +44,6 @@ public class CEducation {
         return new ResponseEntity(education, HttpStatus.OK);
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoEducation dtoedu) {
         if (StringUtils.isBlank(dtoedu.getNombreE())) {
@@ -60,7 +60,6 @@ public class CEducation {
 
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoEducation dtoedu) {
         //Aaca validamos si existe ese ID
@@ -82,7 +81,6 @@ public class CEducation {
         return new ResponseEntity(new Mensaje("Educacion actualizada"), HttpStatus.OK);
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!sEducation.existsById(id)) {
