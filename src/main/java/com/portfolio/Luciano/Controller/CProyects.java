@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = {"https://portfolio-fb829.web.app", "http://localhost:4200"})
 @RequestMapping("/proyects")
 public class CProyects {
+
     @Autowired
     SProyects sProyects;
     
@@ -31,7 +32,7 @@ public class CProyects {
         List<Proyects> list = sProyects.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
-
+    
     @GetMapping("/detail/{id}")
     public ResponseEntity<Proyects> getById(@PathVariable("id") int id) {
         if (!sProyects.existsById(id)) {
@@ -49,12 +50,12 @@ public class CProyects {
         if (sProyects.existsByNombre(dtoproyects.getNombre())) {
             return new ResponseEntity(new Mensaje("Esa persona existe"), HttpStatus.BAD_REQUEST);
         }
-
-        Proyects proyects = new Proyects(dtoproyects.getNombre(), dtoproyects.getDescription(), dtoproyects.getImg());
+        
+        Proyects proyects = new Proyects(dtoproyects.getNombre(), dtoproyects.getDescription(), dtoproyects.getImg(), dtoproyects.getUrl_imagen());
         sProyects.save(proyects);
-
+        
         return new ResponseEntity(new Mensaje("Persona agregada"), HttpStatus.OK);
-
+        
     }
     
     @PutMapping("/update/{id}")
@@ -73,8 +74,8 @@ public class CProyects {
         proyects.setNombre(dtoproyects.getNombre());
         proyects.setDescription(dtoproyects.getDescription());
         proyects.setImg(dtoproyects.getImg());
-
-
+        proyects.setUrl_imagen(dtoproyects.getUrl_imagen());
+        
         sProyects.save(proyects);
         return new ResponseEntity(new Mensaje("Persona actualizada"), HttpStatus.OK);
     }

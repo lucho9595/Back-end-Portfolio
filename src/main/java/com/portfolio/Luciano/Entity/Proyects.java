@@ -21,15 +21,18 @@ public class Proyects {
     private String description;
     
     private String img;
+    
+    private String url_imagen;
 
     //constructor
     public Proyects() {
     };
 
-    public Proyects(String nombre, String description, String img) {
+    public Proyects(String nombre, String description, String img, String url_imagen) {
         this.nombre = nombre;
         this.description = description;
         this.img = img;
+        this.url_imagen = url_imagen;
     };
     
     
@@ -65,6 +68,14 @@ public class Proyects {
 
     public void setImg(String img) {
         this.img = img;
+    }
+    
+    public String getUrl_imagen() {
+        return url_imagen;
+    }
+
+    public void setUrl_imagen(String url) {
+        this.url_imagen = url;
     }
     
 }
