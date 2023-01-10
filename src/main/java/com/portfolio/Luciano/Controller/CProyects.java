@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,13 +27,13 @@ public class CProyects {
 
     @Autowired
     SProyects sProyects;
-    
+
     @GetMapping("/lista")
     public ResponseEntity<List<Proyects>> list() {
         List<Proyects> list = sProyects.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
-    
+
     @GetMapping("/detail/{id}")
     public ResponseEntity<Proyects> getById(@PathVariable("id") int id) {
         if (!sProyects.existsById(id)) {
@@ -41,7 +42,8 @@ public class CProyects {
         Proyects proyects = sProyects.getOne(id).get();
         return new ResponseEntity(proyects, HttpStatus.OK);
     }
-    
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoProyects dtoproyects) {
         if (StringUtils.isBlank(dtoproyects.getNombre())) {
@@ -50,14 +52,15 @@ public class CProyects {
         if (sProyects.existsByNombre(dtoproyects.getNombre())) {
             return new ResponseEntity(new Mensaje("Esa persona existe"), HttpStatus.BAD_REQUEST);
         }
-        
+
         Proyects proyects = new Proyects(dtoproyects.getNombre(), dtoproyects.getDescription(), dtoproyects.getImg(), dtoproyects.getUrl_imagen());
         sProyects.save(proyects);
-        
+
         return new ResponseEntity(new Mensaje("Persona agregada"), HttpStatus.OK);
-        
+
     }
-    
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoProyects dtoproyects) {
         //Aaca validamos si existe ese ID
@@ -75,11 +78,12 @@ public class CProyects {
         proyects.setDescription(dtoproyects.getDescription());
         proyects.setImg(dtoproyects.getImg());
         proyects.setUrl_imagen(dtoproyects.getUrl_imagen());
-        
+
         sProyects.save(proyects);
         return new ResponseEntity(new Mensaje("Persona actualizada"), HttpStatus.OK);
     }
-    
+
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!sProyects.existsById(id)) {

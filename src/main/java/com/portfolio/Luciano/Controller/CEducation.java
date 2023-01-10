@@ -42,7 +42,8 @@ public class CEducation {
         Education education = sEducation.getOne(id).get();
         return new ResponseEntity(education, HttpStatus.OK);
     }
-    
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoEducation dtoedu) {
         if (StringUtils.isBlank(dtoedu.getNombreE())) {
@@ -58,7 +59,8 @@ public class CEducation {
         return new ResponseEntity(new Mensaje("Educacion agregada"), HttpStatus.OK);
 
     }
-    
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoEducation dtoedu) {
         //Aaca validamos si existe ese ID
@@ -79,7 +81,8 @@ public class CEducation {
         sEducation.save(education);
         return new ResponseEntity(new Mensaje("Educacion actualizada"), HttpStatus.OK);
     }
-    
+
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!sEducation.existsById(id)) {

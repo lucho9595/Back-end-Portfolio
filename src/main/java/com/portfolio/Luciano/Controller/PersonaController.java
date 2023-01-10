@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/personas")
 @CrossOrigin(origins = {"https://portfolio-fb829.web.app", "http://localhost:4200"})
 public class PersonaController {
-        @Autowired
+
+    @Autowired
     ImpPersonaService personaService;
 
     @GetMapping("/lista")
@@ -38,7 +40,7 @@ public class PersonaController {
         Persona persona = personaService.getOne(id).get();
         return new ResponseEntity(persona, HttpStatus.OK);
     }
-    
+
     /*@PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoPersona dtopersona) {
         if (StringUtils.isBlank(dtopersona.getNombre())) {
@@ -54,7 +56,7 @@ public class PersonaController {
         return new ResponseEntity(new Mensaje("Persona agregada"), HttpStatus.OK);
 
     }*/
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoPersona dtopersona) {
         //Aaca validamos si existe ese ID
@@ -73,11 +75,10 @@ public class PersonaController {
         persona.setDescription(dtopersona.getDescription());
         persona.setImg(dtopersona.getImg());
 
-
         personaService.save(persona);
         return new ResponseEntity(new Mensaje("Persona actualizada"), HttpStatus.OK);
     }
-    
+
     /*@DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!personaService.existsById(id)) {
