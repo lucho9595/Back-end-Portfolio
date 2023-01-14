@@ -1,6 +1,5 @@
 package com.portfolio.Luciano.Dto;
 
-import java.util.Date;
 import javax.validation.constraints.NotBlank;
 
 public class dtoEducation {
@@ -8,18 +7,18 @@ public class dtoEducation {
     @NotBlank
     private String nombreE;
     @NotBlank
-    private String descripcionE;
+    private String tituloE;
     @NotBlank
-    private Date fechaDuracion;
+    private String descripcionE;
 
     //constructor
     public dtoEducation() {
     }
 
-    public dtoEducation(String nombreE, String descripcionE, Date fechaDuracion) {
+    public dtoEducation(String nombreE, String descripcionE, String tituloE) {
         this.nombreE = nombreE;
         this.descripcionE = descripcionE;
-        this.fechaDuracion = fechaDuracion;
+        this.tituloE = tituloE;
     }
 
     //Getters and Setters
@@ -39,12 +38,12 @@ public class dtoEducation {
         this.descripcionE = descripcionE;
     }
 
-    public Date getFechaDuracion() {
-        return fechaDuracion;
+    public String getTituloE() {
+        return tituloE;
     }
 
-    public void setFechaDuracion(Date fechaDuracion) {
-        this.fechaDuracion = fechaDuracion;
+    public void setTituloE(String tituloE) {
+        this.tituloE = tituloE;
     }
 
 }

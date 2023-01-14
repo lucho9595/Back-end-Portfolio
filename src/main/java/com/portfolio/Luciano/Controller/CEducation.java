@@ -53,7 +53,7 @@ public class CEducation {
             return new ResponseEntity(new Mensaje("Esa educacion existe"), HttpStatus.BAD_REQUEST);
         }
 
-        Education education = new Education(dtoedu.getNombreE(), dtoedu.getDescripcionE(), dtoedu.getFechaDuracion());
+        Education education = new Education(dtoedu.getNombreE(), dtoedu.getDescripcionE(), dtoedu.getTituloE());
         sEducation.save(education);
 
         return new ResponseEntity(new Mensaje("Educacion agregada"), HttpStatus.OK);
@@ -76,7 +76,7 @@ public class CEducation {
         Education education = sEducation.getOne(id).get();
         education.setNombreE(dtoedu.getNombreE());
         education.setDescripcionE(dtoedu.getDescripcionE());
-        education.setFechaDuracion(dtoedu.getFechaDuracion());
+        education.setTituloE(dtoedu.getTituloE());
 
         sEducation.save(education);
         return new ResponseEntity(new Mensaje("Educacion actualizada"), HttpStatus.OK);
