@@ -1,5 +1,6 @@
 package com.portfolio.Luciano.Entity;
 
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,16 +15,19 @@ public class Education {
     private String nombreE;
     private String tituloE;
     private String descripcionE;
-    
+    private Date inicioE;
+    private Date finE;
 
     //constructores
     public Education() {
     }
 
-    public Education(String nombreE, String descripcionE,String tituloE) {
+    public Education(String nombreE, String descripcionE, String tituloE, Date inicioE, Date finE) {
         this.nombreE = nombreE;
         this.descripcionE = descripcionE;
         this.tituloE = tituloE;
+        this.inicioE = inicioE;
+        this.finE = finE;
     }
 
     //Getters and Setters
@@ -57,6 +61,22 @@ public class Education {
 
     public void setTituloE(String tituloE) {
         this.tituloE = tituloE;
+    }
+
+    public Date getInicioE() {
+        return inicioE;
+    }
+
+    public void setInicioE(Date inicioE) {
+        this.inicioE = inicioE;
+    }
+
+    public Date getFinE() {
+        return finE;
+    }
+
+    public void setFinE(Date finE) {
+        this.finE = finE;
     }
 
 }
