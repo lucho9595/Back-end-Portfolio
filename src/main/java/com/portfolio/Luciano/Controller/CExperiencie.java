@@ -53,13 +53,13 @@ public class CExperiencie {
             return new ResponseEntity(new Mensaje("Esa experiencia existe"), HttpStatus.BAD_REQUEST);
         }
 
-        Experiencie experiencie = new Experiencie(dtoexp.getNombreE(), dtoexp.getDescripcionE());
+        Experiencie experiencie = new Experiencie(dtoexp.getNombreE(), dtoexp.getDescripcionE(), dtoexp.getInicioE(), dtoexp.getFinE());
         sExperiencie.save(experiencie);
 
         return new ResponseEntity(new Mensaje("Experiencia agregada"), HttpStatus.OK);
 
     }
-    
+
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoExperiencie dtoexp) {
@@ -76,6 +76,8 @@ public class CExperiencie {
         Experiencie experiencie = sExperiencie.getOne(id).get();
         experiencie.setNombreE(dtoexp.getNombreE());
         experiencie.setDescripcionE(dtoexp.getDescripcionE());
+        experiencie.setInicioE(dtoexp.getInicioE());
+        experiencie.setFinE(dtoexp.getFinE());
 
         sExperiencie.save(experiencie);
         return new ResponseEntity(new Mensaje("Experiencia actualizada"), HttpStatus.OK);
