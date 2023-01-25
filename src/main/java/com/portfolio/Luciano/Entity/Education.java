@@ -17,17 +17,21 @@ public class Education {
     private String descripcionE;
     private Date inicioE;
     private Date finE;
+    private String img;
+    private String url_imagen;
 
     //constructores
     public Education() {
     }
 
-    public Education(String nombreE, String descripcionE, String tituloE, Date inicioE, Date finE) {
+    public Education(String nombreE, String descripcionE, String tituloE, Date inicioE, Date finE, String img, String url_imagen) {
         this.nombreE = nombreE;
         this.descripcionE = descripcionE;
         this.tituloE = tituloE;
         this.inicioE = inicioE;
         this.finE = finE;
+        this.img = img;
+        this.url_imagen = url_imagen;
     }
 
     //Getters and Setters
@@ -77,6 +81,22 @@ public class Education {
 
     public void setFinE(Date finE) {
         this.finE = finE;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getUrl_imagen() {
+        return url_imagen;
+    }
+
+    public void setUrl_imagen(String url) {
+        this.url_imagen = url;
     }
 
 }

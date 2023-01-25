@@ -16,16 +16,20 @@ public class Experiencie {
     private String descripcionE;
     private Date inicioE;
     private Date finE;
+    private String img;
+    private String url_imagen;
 
     //constructores
     public Experiencie() {
     }
 
-    public Experiencie(String nombreE, String descripcionE, Date inicioE, Date finE) {
+    public Experiencie(String nombreE, String descripcionE, Date inicioE, Date finE, String img, String url_imagen) {
         this.nombreE = nombreE;
         this.descripcionE = descripcionE;
         this.inicioE = inicioE;
         this.finE = finE;
+        this.img = img;
+        this.url_imagen = url_imagen;
     }
 
     //Getters and Setters
@@ -52,7 +56,7 @@ public class Experiencie {
     public void setDescripcionE(String descripcionE) {
         this.descripcionE = descripcionE;
     }
-    
+
     public Date getInicioE() {
         return inicioE;
     }
@@ -68,4 +72,21 @@ public class Experiencie {
     public void setFinE(Date finE) {
         this.finE = finE;
     }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getUrl_imagen() {
+        return url_imagen;
+    }
+
+    public void setUrl_imagen(String url) {
+        this.url_imagen = url;
+    }
+
 }

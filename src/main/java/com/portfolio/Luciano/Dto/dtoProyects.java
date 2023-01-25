@@ -3,7 +3,7 @@ package com.portfolio.Luciano.Dto;
 import javax.validation.constraints.NotBlank;
 
 public class dtoProyects {
-    
+
     @NotBlank
     private String nombre;
     @NotBlank
@@ -12,9 +12,8 @@ public class dtoProyects {
     private String img;
     @NotBlank
     private String url_imagen;
-    
-    //Constructor
 
+    //Constructor
     public dtoProyects() {
     }
 
@@ -24,9 +23,8 @@ public class dtoProyects {
         this.img = img;
         this.url_imagen = url_imagen;
     }
-    
-    //Getter and Setter
 
+    //Getter and Setter
     public String getNombre() {
         return nombre;
     }
@@ -50,7 +48,7 @@ public class dtoProyects {
     public void setImg(String img) {
         this.img = img;
     }
-    
+
     public String getUrl_imagen() {
         return url_imagen;
     }
@@ -58,5 +56,4 @@ public class dtoProyects {
     public void setUrl_imagen(String url_imagen) {
         this.url_imagen = url_imagen;
     }
-    
 }

@@ -15,17 +15,23 @@ public class dtoEducation {
     private Date inicioE;
     @NotBlank
     private Date finE;
+    @NotBlank
+    private String img;
+    @NotBlank
+    private String url_imagen;
 
     //constructor
     public dtoEducation() {
     }
 
-    public dtoEducation(String nombreE, String descripcionE, String tituloE, Date inicioE, Date finE) {
+    public dtoEducation(String nombreE, String descripcionE, String tituloE, Date inicioE, Date finE, String img, String url_imagen) {
         this.nombreE = nombreE;
         this.descripcionE = descripcionE;
         this.tituloE = tituloE;
         this.inicioE = inicioE;
         this.finE = finE;
+        this.img = img;
+        this.url_imagen = url_imagen;
     }
 
     //Getters and Setters
@@ -69,4 +75,19 @@ public class dtoEducation {
         this.finE = finE;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getUrl_imagen() {
+        return url_imagen;
+    }
+
+    public void setUrl_imagen(String url_imagen) {
+        this.url_imagen = url_imagen;
+    }
 }

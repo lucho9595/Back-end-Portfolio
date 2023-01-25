@@ -13,16 +13,22 @@ public class dtoExperiencie {
     private Date inicioE;
     @NotBlank
     private Date finE;
+    @NotBlank
+    private String img;
+    @NotBlank
+    private String url_imagen;
 
     //constructor
     public dtoExperiencie() {
     }
 
-    public dtoExperiencie(String nombreE, String descripcionE, Date inicioE, Date finE) {
+    public dtoExperiencie(String nombreE, String descripcionE, Date inicioE, Date finE, String img, String url_imagen) {
         this.nombreE = nombreE;
         this.descripcionE = descripcionE;
         this.inicioE = inicioE;
         this.finE = finE;
+        this.img = img;
+        this.url_imagen = url_imagen;
     }
 
     //Getters and Setters
@@ -41,7 +47,7 @@ public class dtoExperiencie {
     public void setDescripcionE(String descripcionE) {
         this.descripcionE = descripcionE;
     }
-    
+
     public Date getInicioE() {
         return inicioE;
     }
@@ -56,5 +62,21 @@ public class dtoExperiencie {
 
     public void setFinE(Date finE) {
         this.finE = finE;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getUrl_imagen() {
+        return url_imagen;
+    }
+
+    public void setUrl_imagen(String url_imagen) {
+        this.url_imagen = url_imagen;
     }
 }
